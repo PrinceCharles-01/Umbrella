@@ -34,6 +34,15 @@ python manage.py collectstatic --noinput
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
+# Créer le superuser automatiquement si les variables sont définies
+if [ ! -z "$DJANGO_SUPERUSER_USERNAME" ] && [ ! -z "$DJANGO_SUPERUSER_PASSWORD" ]; then
+    echo "Creating superuser..."
+    python manage.py create_superuser \
+        --username "$DJANGO_SUPERUSER_USERNAME" \
+        --email "${DJANGO_SUPERUSER_EMAIL:-admin@umbrella.com}" \
+        --password "$DJANGO_SUPERUSER_PASSWORD" || echo "Superuser already exists or creation failed"
+fi
+
 # Démarrer le serveur avec gunicorn
 echo "Starting Gunicorn server on 0.0.0.0:$PORT"
 exec gunicorn umbrella_api.wsgi:application \
