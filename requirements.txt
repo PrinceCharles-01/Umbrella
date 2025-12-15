@@ -6,7 +6,6 @@ geopy
 openrouteservice
 google-cloud-vision
 Pillow
-python-magic-bin
 fuzzywuzzy
 python-Levenshtein
 openai>=2.8.0
