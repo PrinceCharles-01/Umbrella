@@ -1,0 +1,19 @@
+Django
+djangorestframework
+django-cors-headers
+requests
+geopy
+openrouteservice
+google-cloud-vision
+Pillow
+python-magic-bin
+fuzzywuzzy
+python-Levenshtein
+openai>=2.8.0
+python-dotenv
+
+# Production dependencies for Railway
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
