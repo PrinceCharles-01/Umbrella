@@ -181,6 +181,7 @@ if FRONTEND_URL.endswith('/'):
 
 CORS_ALLOWED_ORIGINS = [
     FRONTEND_URL,
+    "https://umbrellafront.vercel.app",  # Frontend Vercel
     "http://localhost:8080",
     "http://127.0.0.1:8080",
     "http://localhost:3000",
