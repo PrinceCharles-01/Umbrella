@@ -43,10 +43,10 @@ if [ ! -z "$DJANGO_SUPERUSER_USERNAME" ] && [ ! -z "$DJANGO_SUPERUSER_PASSWORD" 
         --password "$DJANGO_SUPERUSER_PASSWORD" || echo "Superuser already exists or creation failed"
 fi
 
-# Seed database if AUTO_SEED is set to true
+# Seed database if AUTO_SEED is set to true (SAFE MODE - won't delete existing data)
 if [ "$AUTO_SEED" = "true" ]; then
-    echo "Seeding database with initial data..."
-    python manage.py seed_data || echo "Seeding failed or already done"
+    echo "Seeding database with initial data (safe mode)..."
+    python manage.py seed_data_safe || echo "Seeding failed or database already has data"
 fi
 
 # Démarrer le serveur avec gunicorn
