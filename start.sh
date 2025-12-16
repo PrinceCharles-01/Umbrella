@@ -43,6 +43,12 @@ if [ ! -z "$DJANGO_SUPERUSER_USERNAME" ] && [ ! -z "$DJANGO_SUPERUSER_PASSWORD" 
         --password "$DJANGO_SUPERUSER_PASSWORD" || echo "Superuser already exists or creation failed"
 fi
 
+# Seed database if AUTO_SEED is set to true
+if [ "$AUTO_SEED" = "true" ]; then
+    echo "Seeding database with initial data..."
+    python manage.py seed_data || echo "Seeding failed or already done"
+fi
+
 # Démarrer le serveur avec gunicorn
 echo "Starting Gunicorn server on 0.0.0.0:$PORT"
 exec gunicorn umbrella_api.wsgi:application \
